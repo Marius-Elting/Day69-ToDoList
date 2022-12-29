@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 function AddToDoItem() {
     const [todo, setTodo] = useState();
+    const inputRef = useRef();
     const state = "unsolved";
     const addNewItem = () => {
+        inputRef.current.value = "";
         fetch("http://localhost:9898/todo", {
             method: "POST",
             headers: {
@@ -13,7 +15,7 @@ function AddToDoItem() {
     };
     return (
         <>
-            <input onChange={(e) => setTodo(e.target.value)} placeholder="New Todo Item"></input>
+            <input ref={inputRef} onChange={(e) => setTodo(e.target.value)} placeholder="New Todo Item"></input>
             <button onClick={addNewItem}>Add new Item</button>
         </>
     );

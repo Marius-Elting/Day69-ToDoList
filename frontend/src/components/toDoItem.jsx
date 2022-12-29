@@ -14,10 +14,10 @@
 // }
 
 // export default ToDoItem;
-
+// import FontAwesomeIcon
 
 function ToDoItem({ todo, c }) {
-    const removeItem = (index) => {
+    const solveItem = (index) => {
         fetch("http://localhost:9898/todo")
             .then(res => res.json())
             .then(data => {
@@ -32,11 +32,51 @@ function ToDoItem({ todo, c }) {
                 });
             });
     };
+    const unsolvItem = (index) => {
+        fetch("http://localhost:9898/todo")
+            .then(res => res.json())
+            .then(data => {
+                data[index].state = "unsolved";
+                console.log(data);
+                fetch("http://localhost:9898/todo", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data)
+                });
+            });
+    };
+
+    const removeItem = (index) => {
+        fetch("http://localhost:9898/todo")
+            .then(res => res.json())
+            .then(data => {
+                data.splice(index, 1);
+                console.log(data);
+                fetch("http://localhost:9898/todo", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data)
+                });
+            });
+    };
     return (
-        <div onClick={() => {
-            removeItem(c);
-        }}>
-            <p className={todo.state === "solved" ? "solved" : "unsolved"} key={c}>{todo.todo}</p>
+        <div className={todo.state === "solved" ? "solved todoItem" : "unsolved todoItem"}>
+            <p key={c}>{todo.todo}</p>
+            <div className="todoItemButtons">
+                <button onClick={() => {
+                    solveItem(c);
+                }}>✔️</button>
+                <button onClick={() => {
+                    unsolvItem(c);
+                }}>❌</button>
+                <button onClick={() => {
+                    removeItem(c);
+                }}>🗑️</button>
+            </div>
         </div>
     );
 }

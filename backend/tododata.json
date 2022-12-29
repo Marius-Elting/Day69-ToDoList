@@ -1,14 +1,10 @@
 [
   {
-    "todo": "Hallo",
-    "state": "solved"
-  },
-  {
     "todo": "Hallo2",
-    "state": "solved"
+    "state": "unsolved"
   },
   {
-    "todo": "dwad",
+    "todo": "dies das ananas",
     "state": "solved"
   }
 ]

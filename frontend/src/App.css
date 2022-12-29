@@ -1,13 +1,11 @@
 .solved {
   background-color: green;
-  padding: 30px;
-  width: 100px;
+
 }
 
 .unsolved {
   background-color: gray;
-  padding: 30px;
-  width: 100px;
+
 }
 
 .App {
@@ -20,4 +18,31 @@
 input,
 button {
   width: 200px;
+}
+
+.todoItem {
+  width: 200px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todoItem .todoItemButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.todoItem .todoItemButtons button {
+  display: flex;
+  padding: 2px 5px;
+  width: 30px;
+  height: 30px;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 4px black;
 }
